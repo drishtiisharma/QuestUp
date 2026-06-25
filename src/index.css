@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-slate-50 text-slate-800 font-sans antialiased;
+    }
+}
+
+@layer components {
+    .card-shadow {
+        @apply shadow-[0_8px_20px_rgba(0, 0, 0, 0.02), 0_2px_6px_rgba(0, 20, 40, 0.04)];
+    }
+}
