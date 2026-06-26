@@ -4,6 +4,7 @@ import Greeting from './Greeting';
 import SkillCard from './SkillCard';
 import LogSessionModal from './LogSessionModal';
 import AddSkillModal from './AddSkillModal';
+import EditSkillModal from './Editskillmodal';
 
 interface LeftPanelProps {
     name: string;
@@ -12,6 +13,7 @@ interface LeftPanelProps {
     onDeleteSkill?: (skillName: string) => void;
     onLogSession: (session: any) => void;
     onAddSkill: (skill: any) => void;
+    onEditSkill?: (updated: Skill) => void;
 }
 
 const LeftPanel: React.FC<LeftPanelProps> = ({
@@ -20,10 +22,12 @@ const LeftPanel: React.FC<LeftPanelProps> = ({
     onDeleteAll,
     onDeleteSkill,
     onLogSession,
-    onAddSkill
+    onAddSkill,
+    onEditSkill,
 }) => {
     const [isLogModalOpen, setIsLogModalOpen] = useState(false);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [editingSkill, setEditingSkill] = useState<Skill | null>(null);
 
     const todayCount = skills.filter(skill =>
         skill.sessions.some(s => {
@@ -42,7 +46,7 @@ const LeftPanel: React.FC<LeftPanelProps> = ({
             <div className="flex items-center justify-between gap-2 mb-4">
                 <div className="flex items-center gap-1.5">
                     <span className="text-xl font-bold text-slate-800 flex items-center gap-1.5">
-                        <span className="bg-blue-600 text-white text-sm px-2 py-0.5 rounded-md">Q</span> questup
+                        <span className="bg-blue-600 text-white text-sm px-2 py-0.5 rounded-md">Q</span> QuestUp
                     </span>
                     <span className="text-[10px] font-medium text-slate-400 bg-slate-200/60 px-2 py-0.5 rounded-full">beta</span>
                 </div>
@@ -90,6 +94,7 @@ const LeftPanel: React.FC<LeftPanelProps> = ({
                             skill={skill}
                             isPrimary={skill.id === mostPracticed?.id && skill.sessions.length > 0}
                             onDelete={onDeleteSkill}
+                            onEdit={onEditSkill ? setEditingSkill : undefined}
                         />
                     ))
                 )}
@@ -106,6 +111,16 @@ const LeftPanel: React.FC<LeftPanelProps> = ({
                 isOpen={isAddModalOpen}
                 onClose={() => setIsAddModalOpen(false)}
                 onAddSkill={onAddSkill}
+            />
+
+            <EditSkillModal
+                isOpen={!!editingSkill}
+                onClose={() => setEditingSkill(null)}
+                skill={editingSkill}
+                onSave={(updated) => {
+                    onEditSkill?.(updated);
+                    setEditingSkill(null);
+                }}
             />
         </div>
     );

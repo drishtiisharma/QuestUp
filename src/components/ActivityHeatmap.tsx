@@ -173,12 +173,9 @@ const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({ sessions }) => {
         return badges;
     }, [stats]);
 
-    const goalHours = 730;
-    const goalProgress = Math.min((stats.totalHours / goalHours) * 100, 100);
-
     return (
         <div className="w-full bg-white rounded-xl p-4 shadow-sm border border-slate-100">
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
                 <div className="p-3 rounded-lg bg-slate-50">
                     <div className="flex items-center gap-1.5">
                         <span className="text-lg">🔥</span>
@@ -206,15 +203,7 @@ const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({ sessions }) => {
                         </div>
                     </div>
                 </div>
-                <div className="p-3 rounded-lg bg-slate-50">
-                    <div className="flex items-center gap-1.5">
-                        <span className="text-lg">🎯</span>
-                        <div>
-                            <p className="text-xs text-slate-500">Goal Progress</p>
-                            <p className="text-lg font-bold text-slate-800">{goalProgress.toFixed(0)}%</p>
-                        </div>
-                    </div>
-                </div>
+
                 <div className="p-3 rounded-lg bg-slate-50">
                     <div className="flex items-center gap-1.5">
                         <span className="text-lg">📚</span>

@@ -1,5 +1,6 @@
-import React from 'react';
-import { Session } from '../types/Skill';
+import React, { useState } from 'react';
+import type { Session } from '../types/Skill';
+import AllSessionsModal from './Allsessionsmodal';
 
 interface RecentSessionsProps {
   sessions: Session[];
@@ -7,53 +8,77 @@ interface RecentSessionsProps {
 }
 
 const RecentSessions: React.FC<RecentSessionsProps> = ({ sessions, onClearAll }) => {
+  const [showAll, setShowAll] = useState(false);
+
+  const sorted = [...sessions].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const visible = sorted.slice(0, 3);
+
+  const canViewAll = sorted.length > 0;
+  const hasMore = sorted.length > 3;
+
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm border border-slate-100">
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
-          <i className="fas fa-list-ul text-slate-400 text-xs"></i> Recent Sessions
-        </span>
-        <div className="flex items-center gap-2">
-          {sessions.length > 0 && onClearAll && (
-            <button
-              onClick={onClearAll}
-              className="text-xs font-medium text-red-500 hover:text-red-700 hover:bg-red-50 px-2 py-1 rounded transition flex items-center gap-1"
-            >
-              <i className="fas fa-trash-alt text-[10px]"></i>
-              Clear All
-            </button>
-          )}
-          <button className="text-xs font-medium text-blue-600 hover:text-blue-800 transition flex items-center gap-1">
-            View all <i className="fas fa-arrow-right text-[10px]"></i>
-          </button>
-        </div>
-      </div>
-      <div className="space-y-3">
-        {sessions.length === 0 ? (
-          <div className="text-center py-4 text-slate-400 text-sm">
-            <i className="fas fa-inbox text-2xl block mb-2 text-slate-300"></i>
-            No sessions recorded yet
+    <>
+      <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-5 border border-slate-100 shadow-sm">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-sm font-semibold text-slate-700 flex items-center gap-2">
+            <i className="fas fa-list text-slate-400"></i> Recent Sessions
+          </h3>
+          <div className="flex items-center gap-3">
+            {onClearAll && sessions.length > 0 && (
+              <button
+                onClick={onClearAll}
+                className="text-xs text-red-400 hover:text-red-600 transition flex items-center gap-1"
+              >
+                <i className="fas fa-trash-alt text-[10px]"></i> Clear All
+              </button>
+            )}
+
+            {canViewAll && (
+              <button
+                onClick={() => setShowAll(true)}
+                className="text-xs text-blue-500 hover:text-blue-700 transition font-medium flex items-center gap-1"
+              >
+                View all <i className="fas fa-arrow-right text-[10px]"></i>
+              </button>
+            )}
           </div>
-        ) : (
-          sessions.slice(0, 5).map((session, i) => (
-            <div key={i} className="border-b border-slate-100/70 last:border-0 pb-3 last:pb-0">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <span className="text-sm font-semibold text-slate-800">{session.skillName}</span>
-                  <p className="text-xs text-slate-500 leading-relaxed mt-0.5 line-clamp-2">{session.note}</p>
+        </div>
+
+        <div className="space-y-0.5">
+          {visible.length === 0 ? (
+            <p className="text-sm text-slate-400 text-center py-6">No sessions yet. Log one to get started!</p>
+          ) : (
+            visible.map(session => (
+              <div key={session.id} className="flex items-center justify-between py-2.5 border-b border-slate-50 last:border-0">
+                <div>
+                  <p className="text-sm font-medium text-slate-800">{session.skillName}</p>
+                  <p className="text-xs text-slate-400 mt-0.5">{session.note || `Practiced ${session.skillName}`}</p>
                 </div>
-                <div className="text-right shrink-0">
-                  <span className="text-xs font-medium text-slate-700 bg-slate-100 px-2 py-0.5 rounded-full whitespace-nowrap">
-                    {session.duration}min
-                  </span>
-                  <div className="text-[10px] text-slate-400 mt-0.5">{session.dateLabel}</div>
+                <div className="text-right shrink-0 ml-4">
+                  <p className="text-sm font-semibold text-slate-700">{session.duration}min</p>
+                  <p className="text-xs text-slate-400">{session.dateLabel}</p>
                 </div>
               </div>
-            </div>
-          ))
+            ))
+          )}
+        </div>
+
+        {hasMore && (
+          <button
+            onClick={() => setShowAll(true)}
+            className="w-full mt-3 text-xs text-slate-400 hover:text-slate-600 transition text-center py-1"
+          >
+            +{sorted.length - 3} more sessions
+          </button>
         )}
       </div>
-    </div>
+
+      <AllSessionsModal
+        isOpen={showAll}
+        onClose={() => setShowAll(false)}
+        sessions={sessions}
+      />
+    </>
   );
 };
 

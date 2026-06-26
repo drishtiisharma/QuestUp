@@ -9,7 +9,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
         <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-1.5">
                 <span className="text-xl font-bold tracking-tight text-slate-800 flex items-center gap-1.5">
-                    <span className="bg-blue-600 text-white text-sm px-2 py-0.5 rounded-md">Q</span> questup
+                    <span className="bg-blue-600 text-white text-sm px-2 py-0.5 rounded-md">Q</span> QuestUp
                 </span>
                 <span className="text-[10px] font-medium text-slate-400 bg-slate-200/60 px-2 py-0.5 rounded-full">beta</span>
             </div>

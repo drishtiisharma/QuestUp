@@ -55,6 +55,16 @@ const Dashboard: React.FC = () => {
         setSkills([...skills, skillWithId]);
     };
 
+    const handleEditSkill = (updated: Skill) => {
+        setSkills(prev => prev.map(s => s.id === updated.id ? { ...s, ...updated } : s));
+        // If name changed, update sessions too
+        setSessions(prev => prev.map(s =>
+            s.skillName === skills.find(sk => sk.id === updated.id)?.name
+                ? { ...s, skillName: updated.name }
+                : s
+        ));
+    };
+
     const handleLogSession = (sessionData: Omit<Session, 'id' | 'date' | 'dateLabel'>) => {
         const now = new Date();
         const newSession: Session = {
@@ -126,7 +136,7 @@ const Dashboard: React.FC = () => {
             }
         }
 
-        const progress = Math.min((totalHours / skill.weeklyGoal) * 100, 100);
+        const progress = Math.min((totalHours / (skill.weeklyGoal || 1)) * 100, 100);
 
         return {
             ...skill,
@@ -150,11 +160,12 @@ const Dashboard: React.FC = () => {
                             onDeleteSkill={handleDeleteSkill}
                             onLogSession={handleLogSession}
                             onAddSkill={handleAddSkill}
+                            onEditSkill={handleEditSkill}
                         />
                     </div>
 
                     <div className="lg:col-span-8 space-y-6">
-                        {/* Activity Heatmap - Contains its own stats (streak, active days, etc.) */}
+                        {/* Activity Heatmap */}
                         <ActivityHeatmap sessions={sessions} />
 
                         {/* Recent Sessions */}

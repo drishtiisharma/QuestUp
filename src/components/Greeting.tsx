@@ -14,7 +14,7 @@ const Greeting: React.FC<GreetingProps> = ({ name, todayCount }) => {
     return (
         <div className="mb-4">
             <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-                <span className="text-2xl">👋</span> Good {time}, {name}
+                <span className="text-2xl">👋</span> Good {time}
             </h2>
             <p className="text-sm mt-1 flex items-center gap-1.5 text-slate-500">
                 <span className={`inline-block w-1.5 h-1.5 rounded-full ${todayCount > 0 ? 'bg-emerald-400' : 'bg-slate-400'}`}></span>
