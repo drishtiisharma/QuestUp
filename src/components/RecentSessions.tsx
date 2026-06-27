@@ -27,7 +27,7 @@ const RecentSessions: React.FC<RecentSessionsProps> = ({ sessions, onClearAll })
             {onClearAll && sessions.length > 0 && (
               <button
                 onClick={onClearAll}
-                className="text-xs text-red-400 hover:text-red-600 transition flex items-center gap-1"
+                className="text-xs font-medium text-white text-white-600 bg-red-500 hover:text-red-700 hover:bg-red-100 px-2 py-1.5 rounded-lg transition flex items-center gap-1"
               >
                 <i className="fas fa-trash-alt text-[10px]"></i> Clear All
               </button>
@@ -36,7 +36,7 @@ const RecentSessions: React.FC<RecentSessionsProps> = ({ sessions, onClearAll })
             {canViewAll && (
               <button
                 onClick={() => setShowAll(true)}
-                className="text-xs text-blue-500 hover:text-blue-700 transition font-medium flex items-center gap-1"
+                className="text-xs font-medium text-white text-white-600 bg-blue-500 hover:text-blue-700 hover:bg-blue-100 px-2 py-1.5 rounded-lg transition flex items-center gap-1"
               >
                 View all <i className="fas fa-arrow-right text-[10px]"></i>
               </button>

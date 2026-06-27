@@ -108,7 +108,7 @@ const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({ sessions }) => {
     }, [heatmapData, sessions]);
 
     const getColorIntensity = (minutes: number) => {
-        if (minutes === 0) return 'bg-slate-100';
+        if (minutes === 0) return 'bg-gray-200';
         if (minutes < 15) return 'bg-blue-200';
         if (minutes < 30) return 'bg-blue-400';
         if (minutes < 60) return 'bg-blue-600';
@@ -176,40 +176,40 @@ const ActivityHeatmap: React.FC<ActivityHeatmapProps> = ({ sessions }) => {
     return (
         <div className="w-full bg-white rounded-xl p-4 shadow-sm border border-slate-100">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
-                <div className="p-3 rounded-lg bg-slate-50">
-                    <div className="flex items-center gap-1.5">
-                        <span className="text-lg">🔥</span>
+                <div className="p-3 rounded-2xl bg-gray-200">
+                    <div className="flex items-center justify-center gap-2">
+                        <span className="text-base">🔥</span>
                         <div>
-                            <p className="text-xs text-slate-500">Current Streak</p>
-                            <p className="text-lg font-bold text-slate-800">{stats.currentStreak} days</p>
+                            <p className="text-base text-slate-800 text-center font-bold">Current Streak</p>
+                            <p className="text-base font-bold text-slate-800">{stats.currentStreak} days</p>
                         </div>
                     </div>
                 </div>
-                <div className="p-3 rounded-lg bg-slate-50">
-                    <div className="flex items-center gap-1.5">
-                        <span className="text-lg">🏆</span>
+                <div className="p-3 rounded-2xl bg-gray-200">
+                    <div className="flex items-center justify-center gap-2">
+                        <span className="text-base">🏆</span>
                         <div>
-                            <p className="text-xs text-slate-500">Longest Streak</p>
-                            <p className="text-lg font-bold text-slate-800">{stats.longestStreak} days</p>
+                            <p className="text-base text-gray-800 text-center font-bold">Longest Streak</p>
+                            <p className="text-base font-bold text-slate-800">{stats.longestStreak} days</p>
                         </div>
                     </div>
                 </div>
-                <div className="p-3 rounded-lg bg-slate-50">
-                    <div className="flex items-center gap-1.5">
-                        <span className="text-lg">📊</span>
+                <div className="p-3 rounded-2xl bg-gray-200">
+                    <div className="flex items-center justify-center gap-2">
+                        <span className="text-base">📊</span>
                         <div>
-                            <p className="text-xs text-slate-500">Active Days</p>
-                            <p className="text-lg font-bold text-slate-800">{stats.activeDays}</p>
+                            <p className="text-base text-gray-800 text-center font-bold">Active Days</p>
+                            <p className="text-base font-bold text-slate-800">{stats.activeDays}</p>
                         </div>
                     </div>
                 </div>
 
-                <div className="p-3 rounded-lg bg-slate-50">
-                    <div className="flex items-center gap-1.5">
-                        <span className="text-lg">📚</span>
+                <div className="p-3 rounded-2xl bg-gray-200">
+                    <div className="flex items-center justify-center gap-2">
+                        <span className="text-base">📚</span>
                         <div>
-                            <p className="text-xs text-slate-500">Total Study</p>
-                            <p className="text-lg font-bold text-slate-800">{stats.totalHours.toFixed(1)}h</p>
+                            <p className="text-base text-gray-800 text-center font-bold">Total Study</p>
+                            <p className="text-base font-bold text-slate-800">{stats.totalHours.toFixed(1)}h</p>
                         </div>
                     </div>
                 </div>

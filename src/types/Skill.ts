@@ -1,3 +1,4 @@
+// Skills tracked by user
 export interface Skill {
     id: string;
     name: string;
@@ -9,6 +10,7 @@ export interface Skill {
     sessions: Session[];
 }
 
+// Single session
 export interface Session {
     id: string;
     skillName: string;
@@ -18,6 +20,7 @@ export interface Session {
     dateLabel: string;
 }
 
+// Single day in Activity Heatmap
 export interface HeatmapDay {
     date: Date;
     totalMinutes: number;
@@ -25,6 +28,7 @@ export interface HeatmapDay {
     skillNames: string[];
 }
 
+// Navbar Stats
 export interface HeatmapStats {
     currentStreak: number;
     longestStreak: number;

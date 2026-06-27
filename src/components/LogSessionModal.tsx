@@ -107,8 +107,8 @@ const LogSessionModal: React.FC<LogSessionModalProps> = ({
                             type="submit"
                             disabled={skills.length === 0}
                             className={`flex-1 px-4 py-2 rounded-lg transition ${skills.length === 0
-                                    ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                                ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                                : 'bg-blue-600 text-white hover:bg-blue-700'
                                 }`}
                         >
                             Log Session

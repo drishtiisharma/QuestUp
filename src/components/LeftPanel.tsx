@@ -48,32 +48,36 @@ const LeftPanel: React.FC<LeftPanelProps> = ({
                     <span className="text-xl font-bold text-slate-800 flex items-center gap-1.5">
                         <span className="bg-blue-600 text-white text-sm px-2 py-0.5 rounded-md">Q</span> QuestUp
                     </span>
-                    <span className="text-[10px] font-medium text-slate-400 bg-slate-200/60 px-2 py-0.5 rounded-full">beta</span>
                 </div>
+
                 <div className="flex items-center gap-1">
-                    <button
-                        onClick={() => setIsLogModalOpen(true)}
-                        className="text-xs font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 px-2 py-1.5 rounded-lg transition flex items-center gap-1"
-                    >
-                        <i className="fas fa-pen text-[10px]"></i>
-                        <span className="hidden sm:inline">Log</span>
-                    </button>
 
                     <button
                         onClick={() => setIsAddModalOpen(true)}
-                        className="text-xs font-medium text-green-600 hover:text-green-700 hover:bg-green-50 px-2 py-1.5 rounded-lg transition flex items-center gap-1"
+                        className="text-xs font-medium text-white text-green-600 bg-green-600 hover:text-green-700 hover:bg-green-100 px-2 py-1.5 rounded-lg transition flex items-center gap-1"
                     >
-                        <i className="fas fa-plus text-[10px]"></i>
-                        <span className="hidden sm:inline">Add</span>
+                        <i className="fas fa-plus text-[12px]"></i>
+                        <span className="hidden sm:inline">Add Skill</span>
                     </button>
+
+                    <button
+                        onClick={() => setIsLogModalOpen(true)}
+                        className="text-xs font-medium text-white bg-blue-600 hover:text-blue-700 hover:bg-blue-100 px-2 py-1.5 rounded-lg transition flex items-center gap-1"
+                    >
+                        <i className="fas fa-pen text-[12px]"></i>
+                        <span className="hidden sm:inline">Log Session</span>
+                    </button>
+
+
+
+
 
                     {skills.length > 0 && onDeleteAll && (
                         <button
                             onClick={onDeleteAll}
-                            className="text-xs font-medium text-red-500 hover:text-red-700 hover:bg-red-50 px-2 py-1.5 rounded-lg transition flex items-center gap-1"
-                            title="Delete all skills (sessions stay)"
+                            className="text-xs font-medium text-white bg-red-600 hover:text-red-700 hover:bg-red-100 px-2 py-1.5 rounded-lg transition flex items-center gap-1"
                         >
-                            <i className="fas fa-trash-alt text-[10px]"></i>
+                            <i className="fas fa-trash-alt text-[12px]"></i>
                         </button>
                     )}
                 </div>
