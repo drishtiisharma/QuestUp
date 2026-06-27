@@ -1,22 +1,41 @@
 # QuestUp · Skill Tracking Dashboard
 
-A mini frontend project built with React, TypeScript, and Tailwind CSS.
+QuestUp is a skill tracking application that helps users organize their learning and stay consistent. It allows users to manage skills, log study sessions, track progress over time, and maintain learning streaks from a single dashboard.
 
-## Tech Stack
+This project was built to practice frontend development with React and TypeScript while focusing on creating a clean, organized, and user-friendly interface.
+
+## 🚀 Tech Stack
+
 - React 18
 - TypeScript
-- Tailwind CSS
 - Vite
-- Font Awesome Icons
+- Tailwind CSS
+- Font Awesome
 
-## Features
-- Greeting with time-based message
-- Skill cards with progress bars
-- Activity heatmap (28 days)
-- Recent sessions list
-- Add new skill form
+## ✨ Features
 
-## Setup
+- Add and manage skills
+- Track learning progress with progress bars
+- 28-day activity heatmap
+- Recent study session history
+- Learning streak tracking
+
+## ⬇ Installation
+
 ```bash
+git clone https://github.com/drishtiisharma/QuestUp.git
+cd QuestUp
 npm install
 npm run dev
+````
+
+Open your browser and visit:
+
+```
+http://localhost:5173
+```
+
+## 📌 Status
+
+This project is actively being developed, with additional features and improvements planned.
+
